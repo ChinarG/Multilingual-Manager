@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7891083062169948958}
   - component: {fileID: 7891083062169948959}
   - component: {fileID: 7891083062169948952}
+  - component: {fileID: 114108387418267712}
   m_Layer: 5
   m_Name: Dynamic Text (1)
   m_TagString: Untagged
@@ -124,6 +125,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a347eb990ae2bf4ea6934c2f67bb06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  L: 10
-  E: "Dynamic\uFF1AChinar"
-  C: "\u52A8\u6001\uFF1A\u6BCB\u6850"
+  L: 0
+  E: 
+  C: 
+  Color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114108387418267712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7891083062169948954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  L: 11
+  E: 
+  C: 
+  Color: {r: 0, g: 0, b: 0, a: 0}
