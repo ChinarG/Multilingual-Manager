@@ -7,17 +7,40 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ChinarRecordText : MonoBehaviour
 {
-    private void Start()
+    /// <summary>
+    /// 语言赋值
+    /// </summary>
+    public void ChangeLanguage(SettingManager settingManager, int value)
     {
-      
+        var s = settingManager.LanguageDatas.Datas;
+        if (!settingManager.IsChangeLanguage)
+        {
+            E     = s[I].E;
+            C     = s[I].C;
+            Color = new Color(s[I].ys.r, s[I].ys.g, s[I].ys.b, s[I].ys.a);
+        }
+
+        switch (value)
+        {
+            case 0:
+                GetComponent<Text>().text = C;
+                break;
+            case 1:
+                GetComponent<Text>().text = E;
+                break;
+            case 2:
+                //其他语言自行扩展；
+                break;
+        }
     }
 
 
-    public int    L;     //编号
+    public int    I;     //编号
     public string E;     //英
     public string C;     //中
     public Color  Color; //字体颜色
@@ -28,16 +51,17 @@ public class ChinarRecordText : MonoBehaviour
     }
 
 
-    public ChinarRecordText(int l, string e, string c, Color color, ref List<ChinarRecordTextData> datas)
+    public ChinarRecordText(int i, string e, string c, Color color, ref List<ChinarRecordTextData> datas)
     {
-        L     = l;
+        I     = i;
         E     = e;
         C     = c;
         Color = color;
-        ChinarRecordTextData data = new ChinarRecordTextData(l, e, c, color);
+        ChinarRecordTextData data = new ChinarRecordTextData(i, e, c, color);
         datas.Add(data);
     }
 }
+
 
 /// <summary>
 /// 语言数据总类
@@ -45,8 +69,7 @@ public class ChinarRecordText : MonoBehaviour
 [XmlRoot("Root")]
 public class LanguageData
 {
-    [XmlArray("Ds"), XmlArrayItem("D")]
-    public List<ChinarRecordTextData> Datas;
+    [XmlArray("Ds"), XmlArrayItem("D")] public List<ChinarRecordTextData> Datas;
 
 
     public LanguageData()
@@ -55,15 +78,16 @@ public class LanguageData
     }
 }
 
+
 /// <summary>
 /// 语言数据模型
 /// </summary>
 public class ChinarRecordTextData
 {
-    [XmlAttribute] public int    L; //编号
-    [XmlAttribute] public string E; //英
-    [XmlAttribute] public string C; //中
-    public                Ys     ys;//颜色
+    [XmlAttribute] public int    I;  //编号
+    [XmlAttribute] public string E;  //英
+    [XmlAttribute] public string C;  //中
+    public                Ys     ys; //颜色
 
 
     public struct Ys
@@ -95,9 +119,9 @@ public class ChinarRecordTextData
     }
 
 
-    public ChinarRecordTextData(int l, string e, string c, Color color)
+    public ChinarRecordTextData(int i, string e, string c, Color color)
     {
-        L  = l;
+        I  = i;
         E  = e;
         C  = c;
         ys = new Ys(color.r, color.g, color.b, color.a);
@@ -106,6 +130,6 @@ public class ChinarRecordTextData
 
     public override string ToString()
     {
-        return $"{nameof(L)}: {L}, {nameof(E)}: {E}, {nameof(C)}: {C}, {nameof(ys)}: {ys}";
+        return $"{nameof(I)}: {I}, {nameof(E)}: {E}, {nameof(C)}: {C}, {nameof(ys)}: {ys}";
     }
 }

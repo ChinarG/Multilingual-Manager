@@ -11,17 +11,8 @@ using UnityEngine.UI;
 
 public class SettingManager : MonoBehaviour
 {
-    public static SettingManager instance; //单例
-
-    public static SettingManager Instance
-    {
-        get
-        {
-            if (instance == null) instance = new SettingManager();
-            return instance;
-        }
-    }
-    public LanguageData LanguageDatas;
+    public LanguageData LanguageDatas;//语言包数据
+    public bool         IsChangeLanguage;//是否加载过语言包数据，进行过更换就会加载一次数据，为了避免多次加载
 
 
     private void Awake()
@@ -49,25 +40,11 @@ public class SettingManager : MonoBehaviour
     private void OnSelectLanguage(int value)
     {
         var texts = FindObjectsOfType<ChinarRecordText>();
-        switch (value)
+        for (int i = 0; i < texts.Length; i++)
         {
-            case 0:
-                for (int i = 0; i < texts.Length; i++)
-                {
-                    texts[i].GetComponent<Text>().text = texts[i].C;
-                }
-
-                break;
-            case 1:
-                for (int i = 0; i < texts.Length; i++)
-                {
-                    texts[i].GetComponent<Text>().text = texts[i].E;
-                }
-
-                break;
-            case 2:
-                print("其他语言自行添加");
-                break;
+            texts[i].ChangeLanguage(this, value);
         }
+
+        IsChangeLanguage = true;
     }
 }
