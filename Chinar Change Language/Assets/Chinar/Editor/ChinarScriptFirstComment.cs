@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.IO;
+﻿using System.IO;
 
 
 #region Chinar Icon
@@ -80,7 +79,7 @@ using System.IO;
 
 
 
-namespace UGUIFrameWorkEditor
+namespace ChinarX.Editor
 {
     /// <summary>
     /// Chinar 脚本自动添加头注
